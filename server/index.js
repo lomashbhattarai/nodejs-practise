@@ -13,7 +13,11 @@ app.use(cors());
 
 
 const posts = require('./routes/api/posts');
+const books = require('./routes/api/books');
+const users = require('./routes/api/users');
 app.use('/api/posts',posts);
+app.use('/api/books',books);
+app.use('/api/users',users);
 
 //handle production
 if(process.env.NODE_ENV === 'production'){

@@ -1,17 +1,14 @@
 <template>
   <div id="app">
-    <PostComponent msg="Welcome to Your Vue.js App"/>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import PostComponent from './components/PostComponent.vue'
+
 
 export default {
   name: 'app',
-  components: {
-    PostComponent
-  }
 }
 </script>
 

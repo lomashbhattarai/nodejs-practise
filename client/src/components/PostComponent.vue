@@ -1,10 +1,8 @@
 <template>
   <div class="container">
-    <h1> learn </h1>
-    <!-- create post here -->
-    <h4>New Word Everyday:</h4>
     <div class="create-post">
         <input id="create-post" type="text" v-model="word">
+        <input id="write-meaning" type="text" v-model="meaning">
         <button class="btn btn-primary ml-2" @click="createPost"> Add </button>
     </div>
     <hr>
@@ -20,7 +18,7 @@
             <div class="card-body">
               <h5 class="card-title">{{ post.text }}</h5>
               <p class="card-text">{{ post.createAt }}</p>
-              <div>:3Go somewhere</div>
+              <div> {{ post.meaning }} </div>
             </div>
           </div>
           
@@ -39,7 +37,8 @@ export default {
     return {
       posts:[],
       error: '',
-      word:''
+      word:'',
+      meaning:''
     }
   },
   async created(){
@@ -51,7 +50,7 @@ export default {
   },
   methods:{
     async createPost(){
-      await PostService.insertPost(this.word)
+      await PostService.insertPost(this.word,this.meaning)
       this.posts = await PostService.getPosts();
     },
 
