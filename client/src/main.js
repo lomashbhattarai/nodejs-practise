@@ -6,15 +6,16 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 import VueRouter from 'vue-router'
 import bookDetail from './components/book-detail.vue'
-const Foo = { template: '<div>foo</div>' }
+import mainPage from './components/main-page.vue'
 Vue.use(VueRouter)
 const routes = [
   {
     path:'/',
-    component: Foo
+    component: mainPage
   },
   {
     path:'/book',
+    name: 'book',
     component: bookDetail
   }
 ]
@@ -28,5 +29,5 @@ Vue.config.productionTip = false
 
 new Vue({
   render: h => h(App),
-  router
+  router,
 }).$mount('#app');
