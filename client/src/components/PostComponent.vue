@@ -1,25 +1,32 @@
 <template>
   <div class="container">
-    <h1> latest Posts</h1>
+    <h1> learn </h1>
     <!-- create post here -->
+    <h4>New Word Everyday:</h4>
     <div class="create-post">
-        <label for="create-post"> Say something.. </label>
-        <input id="create-post" type="text" v-model="text">
-        <button @click="createPost"></button>
+        <input id="create-post" type="text" v-model="word">
+        <button class="btn btn-primary ml-2" @click="createPost"> Add </button>
     </div>
     <hr>
     <p class = "error" v-if="error"> {{ error }}</p>
-    <div class="posts-container">
-      <div class="post"
-      v-for="(post,index) in posts"
-      :item= "post"
-      :index="index"
-      :key="post._id" 
-      @dblclick="deletePost(post._id)" 
-    >
-      {{ post.createAt }}
-      <p class="text"> {{ post.text }}</p>
-    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <ul class="list-group" v-for="(post,index) in posts"
+        :item= "post"
+        :index="index"
+        :key="post._id" 
+        @dblclick="deletePost(post._id)">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">{{ post.text }}</h5>
+              <p class="card-text">{{ post.createAt }}</p>
+              <div>:3Go somewhere</div>
+            </div>
+          </div>
+          
+          
+        </ul>
+          </div>
     </div>
   </div>
 </template>
@@ -32,7 +39,7 @@ export default {
     return {
       posts:[],
       error: '',
-      text:''
+      word:''
     }
   },
   async created(){
@@ -44,7 +51,7 @@ export default {
   },
   methods:{
     async createPost(){
-      await PostService.insertPost(this.text)
+      await PostService.insertPost(this.word)
       this.posts = await PostService.getPosts();
     },
 
