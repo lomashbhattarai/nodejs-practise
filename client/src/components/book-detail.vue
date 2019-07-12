@@ -17,18 +17,15 @@
                 </div>
             </div>
         </div>
-        <ratingCard />
     </div>
 </template>
 
 <script>
-    import ratingCard from './rating'
     export default {
         created(){
             
         },
         components:{
-            ratingCard
         }
 
 
