@@ -15,9 +15,11 @@ app.use(cors());
 const posts = require('./routes/api/posts');
 const books = require('./routes/api/books');
 const users = require('./routes/api/users');
+const notes = require('./routes/api/notes');
 app.use('/api/posts',posts);
 app.use('/api/books',books);
 app.use('/api/users',users);
+app.use('/api/notes',notes);
 
 //handle production
 if(process.env.NODE_ENV === 'production'){
@@ -31,7 +33,7 @@ if(process.env.NODE_ENV === 'production'){
 
 const port = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
+/* app.get('/', (req, res) => {
   res.send('\n\nHello, yuuuu!\n\n');
 });
 
@@ -58,8 +60,23 @@ app.post('/api/courses',(req, res) => {
     res.status(200).send(req.body)
   }
   
-})
+}) */
 
-app.listen(port, () => {
-  console.log(`listening on port ${ port }`);
+const mongoose = require('mongoose');
+mongoose.connect('mongodb+srv://lomash:Godfather@hiup-hgarc.mongodb.net/test?retryWrites=true&w=majority',
+      {
+        useNewUrlParser: true
+      });
+db= mongoose.connection
+db.on('error',console.error.bind(console, 'connection error:'));
+
+db.once('open', () => {
+  console.log('Connected to MongoDB');
+  console.log(port)
+  app.listen(port, () => {
+    console.log(`listening on port ${ port }`);
+  });
+  
 });
+
+
