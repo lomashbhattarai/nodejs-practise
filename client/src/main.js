@@ -6,20 +6,9 @@ import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import VueRouter from 'vue-router'
-import bookDetail from './components/book-detail.vue'
-import mainPage from './components/main-page.vue'
+import routes from './routes/routes'
 Vue.use(VueRouter)
-const routes = [
-  {
-    path:'/',
-    component: mainPage
-  },
-  {
-    path:'/book',
-    name: 'book',
-    component: bookDetail
-  }
-]
+
 
 const router = new VueRouter({
   mode: 'history',

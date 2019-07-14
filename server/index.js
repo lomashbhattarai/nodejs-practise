@@ -30,7 +30,7 @@ if(process.env.NODE_ENV === 'production'){
   app.get(/.*/,(req,res) => res.sendFile(__dirname + '/public/index.html'));
 
 }
-
+console.log("port",process.env)
 const port = process.env.PORT || 3000;
 
 /* app.get('/', (req, res) => {

@@ -3,14 +3,18 @@
         <h3> Your Space</h3>
         <div class="row">
             <div class="col-md-6">
-                <h5> your friends</h5>
+                <router-link :to="{name:'friendPage'}">
+                    <h5> your friends</h5>
+                </router-link>
                 <ul>
                     <li v-for="friend in friends" :key="friend._id">
                         {{friend.userName}}    
                     </li>
                 </ul>
             </div>
-            <h5> your books</h5>
+            <router-link :to="{name:'bookPage'}">
+                <h5> your books</h5>
+            </router-link>
             <ul>
                 <li v-for="book in books" :key="book._id">
                     <router-link :to="{name:'book'}"> {{book.name}} </router-link>    

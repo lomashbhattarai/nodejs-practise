@@ -1,38 +1,93 @@
 <template>
-  <v-app>
-    <v-toolbar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        flat
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
+  <v-app id="keep">
+      <v-toolbar color="lime" app absolute clipped-left>
+        <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
+        <router-link :to="{name: 'mainPage'}">
+          <span class="title ml-3 mr-5">Self&nbsp;<span class="font-weight-light">authoring Program</span></span>
+        </router-link>
+        <v-text-field
+          solo-inverted
+          flat
+          hide-details
+          label="Search"
+          prepend-inner-icon="search"
+        ></v-text-field>
+        <v-spacer></v-spacer>
+      </v-toolbar>
+    <v-navigation-drawer
+      v-model="drawer"
+      fixed
+      clipped
+      class="grey lighten-4"
+      app
+    >
+      <v-list
+        dense
+        class="grey lighten-4"
       >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
-    </v-toolbar>
-
-    <v-content>
-      <HelloWorld/>
+        <template v-for="(item, i) in items">
+          <v-divider
+            v-if="item.divider"
+            :key="i"
+            dark
+            class="my-3"
+          ></v-divider>
+          
+          <v-list-tile
+            v-else
+            :key="i"
+          >
+            <v-list-tile-action>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-tile-action>
+            <v-list-tile-content>
+              <v-list-tile-title class="grey--text">
+                <router-link :to="{ name: item.route}">
+                {{ item.text }}
+                </router-link>
+              </v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+          
+        </template>
+      </v-list>
+    </v-navigation-drawer>
+    
+    <v-content class="mt-5">
+      <router-view></router-view>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  },
-  data () {
-    return {
-      //
+  export default {
+    data: () => ({
+      drawer: null,
+      items: [
+        { icon: 'lightbulb_outline', text: 'Notes', route: 'notePage' },
+        { icon: 'touch_app', text: 'Reminders' },
+        { icon: 'touch_app', text: 'Friends', route: 'friendPage' },
+        { icon: 'touch_app', text: 'Books', route: 'bookPage' },
+        { divider: true },
+        { icon: 'add', text: 'Create new label' },
+        { divider: true },
+        { icon: 'archive', text: 'Archive' },
+        { icon: 'delete', text: 'Trash' },
+        { divider: true },
+        { icon: 'settings', text: 'Settings' },
+        { icon: 'chat_bubble', text: 'Chat' },
+        { icon: 'help', text: 'About' },
+        
+      ]
+    }),
+    props: {
+      source: String
     }
   }
-}
 </script>
+
+<style lang="stylus">
+  #keep
+    .v-navigation-drawer__border
+      display: none
+</style>
