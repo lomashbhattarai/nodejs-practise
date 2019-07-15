@@ -3,6 +3,10 @@ const express = require('express');
 const Notes = require('./notesModel');
 const router = express.Router();
 
+router.get('/', (req,res) => {
+    
+})
+
 router.post('/', (req, res) => {
     let note = new Notes(req.body);
     note.save((err,note)=>{
