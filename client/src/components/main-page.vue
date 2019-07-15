@@ -1,10 +1,10 @@
 <template>
     <div class="container">
-        <h3> Your Space</h3>
+        <h3> </h3>
         <div class="row">
             <div class="col-md-6">
                 <router-link :to="{name:'friendPage'}">
-                    <h5> your friends</h5>
+                    <!-- <h5> your friends</h5> -->
                 </router-link>
                 <ul>
                     <li v-for="friend in friends" :key="friend._id">
@@ -13,7 +13,7 @@
                 </ul>
             </div>
             <router-link :to="{name:'bookPage'}">
-                <h5> your books</h5>
+                <!-- <h5> your books</h5> -->
             </router-link>
             <ul>
                 <li v-for="book in books" :key="book._id">

@@ -3,7 +3,14 @@ const express = require('express');
 const Notes = require('./notesModel');
 const router = express.Router();
 
-router.get('/', (req,res) => {
+router.get('/', (req, res) => {
+    Notes.find()
+        .exec()
+        .then(docs => res.status(200)
+            .json(docs))
+        .catch(err => res.status(500)
+            .json(err))
+
     
 })
 
