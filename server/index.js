@@ -14,7 +14,8 @@ app.use(cors());
 
 const posts = require('./routes/api/posts');
 const books = require('./routes/api/books');
-const users = require('./routes/api/users');
+//const users = require('./routes/api/users');
+const users = require('./routes/api/users_mongoose');
 const notes = require('./routes/api/notes');
 app.use('/api/posts',posts);
 app.use('/api/books',books);
@@ -30,7 +31,6 @@ if(process.env.NODE_ENV === 'production'){
   app.get(/.*/,(req,res) => res.sendFile(__dirname + '/public/index.html'));
 
 }
-console.log("port",process.env)
 const port = process.env.PORT || 3000;
 
 /* app.get('/', (req, res) => {

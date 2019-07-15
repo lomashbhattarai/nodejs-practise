@@ -3,16 +3,10 @@
       <v-toolbar color="lime" app absolute clipped-left>
         <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
         <router-link :to="{name: 'mainPage'}">
-          <!-- <span class="title ml-3 mr-5">Self&nbsp;<span class="font-weight-light">authoring Program</span></span> -->
+          <span class="title ml-3 mr-5">Self&nbsp;<span class="font-weight-light">authoring Program</span></span> 
         </router-link>
-        <v-text-field
-          solo-inverted
-          flat
-          hide-details
-          label="Search"
-          prepend-inner-icon="search"
-        ></v-text-field>
         <v-spacer></v-spacer>
+        <span>{{ "lomash "}}</span>
       </v-toolbar>
     <v-navigation-drawer
       v-model="drawer"
@@ -65,11 +59,9 @@
       drawer: null,
       items: [
         { icon: 'lightbulb_outline', text: 'Notes', route: 'notePage' },
-        { icon: 'touch_app', text: 'Reminders' },
+        { icon: 'touch_app', text: 'Lists' },
         { icon: 'touch_app', text: 'Friends', route: 'friendPage' },
         { icon: 'touch_app', text: 'Books', route: 'bookPage' },
-        { divider: true },
-        { icon: 'add', text: 'Create new label' },
         { divider: true },
         { icon: 'archive', text: 'Archive' },
         { icon: 'delete', text: 'Trash' },
