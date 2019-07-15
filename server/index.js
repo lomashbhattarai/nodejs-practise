@@ -37,18 +37,6 @@ const port = process.env.PORT || 3000;
   res.send('\n\nHello, yuuuu!\n\n');
 });
 
-app.get('/api/courses',(req,res) => {
-  res.send([1,2,3]);
-});
-app.get('/api/courses/:id/',(req,res) => {
-  
-  if(req.params.id == 1){
-    res.send(req.params.id)
-  } else {
-    res.status(404).send('we have only one course.')
-  }
-})
- 
 app.post('/api/courses',(req, res) => {
   const schema = {
     name : Joi.string().min(3).required()
