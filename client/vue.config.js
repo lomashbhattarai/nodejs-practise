@@ -1,4 +1,5 @@
 const path = require('path');
+require('dotenv').config();
 
 module.exports = {
     outputDir: path.resolve(__dirname,'../server/public'),
@@ -7,7 +8,7 @@ module.exports = {
         host: 'localhost',
         proxy: {
             '/api': {
-                target: `http://localhost:3000/`,
+                target: `http://localhost:${process.env.PORT}/`,
                 ws: true,
                 changeOrigin: true
             }    

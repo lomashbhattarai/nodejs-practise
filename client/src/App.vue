@@ -70,12 +70,12 @@
         { icon: 'touch_app', text: 'Friends', route: 'friendPage' },
         { icon: 'touch_app', text: 'Books', route: 'bookPage' },
         { divider: true },
-        { icon: 'archive', text: 'Archive' },
+        /* { icon: 'archive', text: 'Archive' },
         { icon: 'delete', text: 'Trash' },
-        { divider: true },
-        { icon: 'settings', text: 'Settings' },
+        { divider: true }, */
         { icon: 'chat_bubble', text: 'Chat' },
         { icon: 'help', text: 'About', route: 'aboutPage' },
+        { icon: 'settings', text: 'Settings' },
         
       ]
     }),

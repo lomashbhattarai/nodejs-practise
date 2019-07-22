@@ -6,7 +6,7 @@ const nodeMailer = require("nodemailer");
 const EmailTemplate = require('email-templates').EmailTemplate;
 
 var transporter = nodeMailer.createTransport({
-    service: 'gmail',
+    service: 'gmail', 
     auth: {
       user: 'lomashbhattarai1@gmail.com',
       pass: password
