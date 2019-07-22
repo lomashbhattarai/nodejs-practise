@@ -3,7 +3,7 @@
     <v-flex xs12 sm6 offset-sm3>
       <v-card>
         <v-list subheader>
-          <v-subheader>Recent chat</v-subheader>
+          <v-subheader>Recent</v-subheader>
           <router-link :to="{ name: 'friendDetail' }">
             <v-list-tile
                 v-for="friend in friends"
@@ -29,7 +29,7 @@
         <v-divider></v-divider>
 
         <v-list subheader>
-          <v-subheader>Previous chats</v-subheader>
+          <v-subheader>Previous</v-subheader>
 
           <v-list-tile
             v-for="item in items2"
