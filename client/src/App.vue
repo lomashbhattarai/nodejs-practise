@@ -5,7 +5,6 @@
         <router-link :to="{name: 'mainPage'}">
           <span class="title ml-3 mr-5">Self&nbsp;<span class="font-weight-light">authoring Program</span></span> 
         </router-link>
-<<<<<<< HEAD
         <!-- <v-text-field
           solo-inverted
           flat
@@ -13,8 +12,6 @@
           label="Search"
           prepend-inner-icon="search"
         ></v-text-field> -->
-=======
->>>>>>> 699c858732b95469159c5abf417df0a2df0f277e
         <v-spacer></v-spacer>
         <span>{{ "lomash "}}</span>
       </v-toolbar>
