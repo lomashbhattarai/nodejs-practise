@@ -1,17 +1,17 @@
 <template>
   <v-app id="keep">
-      <v-toolbar color="lime" app absolute clipped-left>
+      <v-toolbar color="white" app absolute clipped-left>
         <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
         <router-link :to="{name: 'mainPage'}">
           <!-- <span class="title ml-3 mr-5">Self&nbsp;<span class="font-weight-light">authoring Program</span></span> -->
         </router-link>
-        <v-text-field
+        <!-- <v-text-field
           solo-inverted
           flat
           hide-details
           label="Search"
           prepend-inner-icon="search"
-        ></v-text-field>
+        ></v-text-field> -->
         <v-spacer></v-spacer>
       </v-toolbar>
     <v-navigation-drawer
@@ -76,7 +76,7 @@
         { divider: true },
         { icon: 'settings', text: 'Settings' },
         { icon: 'chat_bubble', text: 'Chat' },
-        { icon: 'help', text: 'About' },
+        { icon: 'help', text: 'About', route: 'aboutPage' },
         
       ]
     }),

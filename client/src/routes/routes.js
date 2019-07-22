@@ -5,6 +5,7 @@ import friendPage from '../components/friend-page.vue'
 import friendDetail from '../components/friend-detail.vue'
 import notePage from '../components/note-page.vue'
 import noteDetail from '../components/note-detail.vue'
+import aboutPage from '../components/about-page.vue'
 
 
 const routes = [
@@ -43,6 +44,13 @@ const routes = [
         name: 'noteDetail',
         component: noteDetail
     },
+    {
+      path:'/about',
+      name: 'aboutPage',
+      component: aboutPage
+  }
+
+    
   
   ]
 

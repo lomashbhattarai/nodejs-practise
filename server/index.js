@@ -11,15 +11,16 @@ app.use(bodyParser.json());
 app.use(cors());
 //app.use(express.json());
 
-
 const posts = require('./routes/api/posts');
 const books = require('./routes/api/books');
 const users = require('./routes/api/users');
 const notes = require('./routes/api/notes');
+const email = require('./routes/api/emails/email');
 app.use('/api/posts',posts);
 app.use('/api/books',books);
 app.use('/api/users',users);
 app.use('/api/notes',notes);
+app.use('/api/email',email);
 
 //handle production
 if(process.env.NODE_ENV === 'production'){
@@ -30,7 +31,6 @@ if(process.env.NODE_ENV === 'production'){
   app.get(/.*/,(req,res) => res.sendFile(__dirname + '/public/index.html'));
 
 }
-console.log("port",process.env)
 const port = process.env.PORT || 3000;
 
 /* app.get('/', (req, res) => {

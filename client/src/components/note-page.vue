@@ -19,7 +19,6 @@
 import axios from 'axios'
 export default {
     created(){
-        console.log("Hello")
         axios.get('api/notes').then( ({data}) => {
             console.log(data)
             this.notes = data
