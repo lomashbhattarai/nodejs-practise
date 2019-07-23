@@ -1,5 +1,6 @@
 const path = require('path');
 require('dotenv').config();
+const port = process.env.PORT || 5150
 
 module.exports = {
     outputDir: path.resolve(__dirname,'../server/public'),
@@ -8,7 +9,7 @@ module.exports = {
         host: 'localhost',
         proxy: {
             '/api': {
-                target: `http://localhost:${process.env.PORT}/`,
+                target: `http://localhost:${port}/`,
                 ws: true,
                 changeOrigin: true
             }    

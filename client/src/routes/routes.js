@@ -6,6 +6,8 @@ import friendDetail from '../components/friend-detail.vue'
 import notePage from '../components/note-page.vue'
 import noteDetail from '../components/note-detail.vue'
 import aboutPage from '../components/about-page.vue'
+import loginPage from '../components/loginPage.vue'
+import signupPage from '../components/signupPage.vue'
 
 
 const routes = [
@@ -48,7 +50,17 @@ const routes = [
       path:'/about',
       name: 'aboutPage',
       component: aboutPage
-  }
+    },
+    {
+      path:'/login',
+      name: 'loginPage',
+      component: loginPage
+    },
+    {
+      path:'/signup',
+      name: 'signupPage',
+      component: signupPage
+    }
 
     
   

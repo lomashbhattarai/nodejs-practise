@@ -12,14 +12,15 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-    console.log(req.body)
     let user = new Users(req.body);
     user.save((err, user) => {
+        console.log(err)
         if (err){
             return res.status(400).json(err)
         }
-        res.status(200).json(user)
+        return res.status(200)
     })
+
 })
 
 module.exports = router;
