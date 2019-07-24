@@ -61,7 +61,7 @@
       </v-navigation-drawer>
     </template>
     <v-content class="mt-5">
-        <router-view></router-view>
+        <router-view @login="signin"></router-view>
       </v-content>
   </v-app>
 </template>
@@ -91,6 +91,12 @@
     },
     components:{
       
+    },
+    methods:{
+      signin(){
+        this.login = true
+        this.$router.replace({ name: 'mainPage' })
+      }
     }
   }
 </script>

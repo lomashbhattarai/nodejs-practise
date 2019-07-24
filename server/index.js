@@ -3,7 +3,7 @@ const Joi = require('joi');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-
+const session = require('express-session')
 const app = express();
 
 //MiddleWare
@@ -11,17 +11,20 @@ app.use(bodyParser.json());
 app.use(cors());
 //app.use(express.json());
 
+
 const posts = require('./routes/api/posts');
 const books = require('./routes/api/books');
 //const users = require('./routes/api/users');
 const users = require('./routes/api/users_mongoose');
 const notes = require('./routes/api/notes');
 const email = require('./routes/api/emails/email');
-app.use('/api/posts',posts);
-app.use('/api/books',books);
-app.use('/api/users',users);
-app.use('/api/notes',notes);
-app.use('/api/email',email);
+const login = require('./routes/api/login');
+app.use('/api/posts', posts);
+app.use('/api/books', books);
+app.use('/api/users', users);
+app.use('/api/notes', notes);
+app.use('/api/email', email);
+app.use('/api/login', login);
 
 //handle production
 if(process.env.NODE_ENV === 'production'){
