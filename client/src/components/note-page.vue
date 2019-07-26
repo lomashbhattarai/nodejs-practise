@@ -5,13 +5,20 @@
              <div>
                 <h3 class="headline mb-0">{{ note.title}}</h3>
                 <div>{{ note.description}} </div>
+                <v-btn color="primary" fab small dark>
+                    <v-icon>edit</v-icon>
+                </v-btn>
             </div>
-             </v-card-title>
-
+            </v-card-title>
+            
             <span> </span>
             <span> </span>
+            
         </v-card>
         
+        <v-btn class="ma-2" outlined large fab color="indigo">
+            <v-icon>edit</v-icon>
+        </v-btn>    
     </div>
 </template>
 
@@ -25,7 +32,7 @@ export default {
     },
     data(){
         return {
-            notes: this.$store.state.notes
+            notes: this.$store.state.notes || []
         }
     }
 
