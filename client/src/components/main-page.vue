@@ -25,21 +25,20 @@
 </template>
 
 <script>
-    import axios from 'axios';
     export default {
         data(){
             return {
-                friends:[],
-                books:[]
+                friends: this.$store.state.friends,
+                books: this.$store.state.books
             }
         },
         created(){
-            axios.get('api/users').then(({data})=> {
+            /* this.axios.get('api/users').then(({data})=> {
                 this.friends = data
-        });
-        axios.get('api/books').then(({data})=> {
+            });
+            this.axios.get('api/books').then(({data})=> {
                 this.books = data
-        });
+            }); */
         }
         
     }

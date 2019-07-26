@@ -17,8 +17,9 @@
           <span class="mr-4">{{ "login" }}</span>
         </router-link>
         <router-link :to="{ name: 'signupPage'}" v-if="!login">
-          {{ "Sign Up" }}
+          <span class="mr-4"> {{ "Sign Up" }}  </span>
         </router-link>
+        <span  @click="logout">{{ "logout" }}</span>
       </v-toolbar>
     <template v-if="login">
       <v-navigation-drawer
@@ -95,7 +96,18 @@
     methods:{
       signin(){
         this.login = true
+        console.log(this.login)
         this.$router.replace({ name: 'mainPage' })
+      },
+      logout(){
+        localStorage.token = ''
+        this.login = false
+        this.$router.replace({ name: 'loginPage'})
+      }
+    },
+    created(){
+      if(localStorage.token){
+        this.login = true
       }
     }
   }

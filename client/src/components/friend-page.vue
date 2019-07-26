@@ -53,7 +53,6 @@
 
 
 <script>
-  import axios from 'axios';
   export default {
     data () {
       return {
@@ -64,7 +63,7 @@
       }
     },
     created(){
-        axios.get('api/users').then(({data})=> {
+        this.axios.get('api/users').then(({data})=> {
                 this.friends = data
         });
     }

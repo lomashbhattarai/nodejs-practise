@@ -16,17 +16,16 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
     created(){
-        axios.get('api/notes').then( ({data}) => {
+        /* this.axios.get('api/notes').then( ({data}) => {
             console.log(data)
             this.notes = data
-        })
+        }) */
     },
     data(){
         return {
-            notes: []
+            notes: this.$store.state.notes
         }
     }
 

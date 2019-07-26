@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 export default {
     data(){
         return {
@@ -25,7 +24,7 @@ export default {
     },
     methods:{
         sendEmail(){
-            axios.post('api/email',{
+            this.axios.post('api/email',{
                 email: "lomashbhattaraidd@gmail.com",
                 subject: "message",
                 text:this.msg,
