@@ -25,12 +25,21 @@ const store = new Vuex.Store({
             return axios.post('api/login',user).then( ({data}) => {
                 console.log(data)
                 localStorage.token = data.token
-                if(data.status= true){
+                localStorage.currentUser = data.user.userName
+                if(data.status= 'true'){
                   commit('setLogin', true)
                   commit('setUser',data.user)
                   commit('setToken', data.token)
                 }
               })
+         },
+         userData({ commit }, userName) {
+            return axios.get(`api/users/${userName}`).then( ({ data }) => {
+               console.log(data)
+               if(data.status= 'success'){
+                  commit('setUser',data)
+               }
+            })
          }
      }
 })

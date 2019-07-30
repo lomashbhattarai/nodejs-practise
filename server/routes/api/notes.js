@@ -26,30 +26,18 @@ router.post('/', (req, res) => {
 })
 
 router.put('/:username', (req,res) => {
-    User.findOne( { userName : req.params.username}, (err, docs) => {
-        let newNote = {
-            title: req.body.title,
-            description: req.body.description,
-            publish: req.body.publish
+    let newNote = {
+        title: req.body.title,
+        description: req.body.description,
+        publish: req.body.publish
+    }
+    console.log(newNote)
+    User.findOneAndUpdate( { userName : req.params.username}, { $push: { notes: newNote} }, {new: true}, (err, docs) => {
+        if(err){
+            console.log("something is not right")
         }
-        if( docs.notes) {
-            docs.notes.push(newNote)
-            docs.save((err) => {
-                console.log(err)
-            })
-            res.send(docs)
-        } else {
-            docs.notes = []
-            console.log("user found",newNote)
-            docs.notes.push(newNote)
-            docs.save((err) => {
-                console.log(err)
-            })
-            res.send(docs)
-        }
-
-
         
+        res.send(docs)
     }) 
 
 })

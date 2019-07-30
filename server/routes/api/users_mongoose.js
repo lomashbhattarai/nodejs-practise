@@ -11,6 +11,15 @@ router.get('/', (req, res) => {
             .json(err))
 })
 
+router.get('/:userName', (req, res) => {
+    Users.findOne({ userName: req.params.userName })
+        .exec()
+        .then(docs => res.status(200)
+            .json(docs))
+        .catch(err => res.status(500)
+            .json(err))
+})
+
 router.post('/', (req, res) => {
     let user = new Users(req.body);
     user.save((err, user) => {
@@ -22,5 +31,29 @@ router.post('/', (req, res) => {
     })
 
 })
+
+router.put('/:userName/:friend', (req, res) => {
+    Users.findOne({ userName: req.params.friend}, (err, docs) => {
+        if(err){
+            console.log("somethign is wrong")
+        } else {
+            console.log(docs)
+            Users.findOneAndUpdate({ userName: req.params.userName },
+                { $push :{ friends: docs} },
+                {new: true},
+                (err,docs) => {
+                    if (err) {
+                        console.log("somthing is not right")
+                    }
+                    res.send(docs)
+                })
+        }
+
+
+
+    })
+    
+})
+
 
 module.exports = router;

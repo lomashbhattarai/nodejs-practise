@@ -108,7 +108,10 @@
     created(){
       if(localStorage.token){
         this.login = true
+        this.$store.dispatch('userData',localStorage.currentUser)
       }
+      
+
     }
   }
 </script>
