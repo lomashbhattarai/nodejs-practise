@@ -80,7 +80,7 @@
         /* { icon: 'archive', text: 'Archive' },
         { icon: 'delete', text: 'Trash' },
         { divider: true }, */
-        { icon: 'chat_bubble', text: 'Chat' },
+        { icon: 'chat_bubble', text: 'Chat', route: 'chatPage' },
         { icon: 'help', text: 'About', route: 'aboutPage' },
         { icon: 'settings', text: 'Settings' },
         

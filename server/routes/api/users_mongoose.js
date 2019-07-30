@@ -29,7 +29,6 @@ router.post('/', (req, res) => {
         }
         return res.status(200)
     })
-
 })
 
 router.put('/:userName/:friend', (req, res) => {
@@ -39,7 +38,7 @@ router.put('/:userName/:friend', (req, res) => {
         } else {
             console.log(docs)
             Users.findOneAndUpdate({ userName: req.params.userName },
-                { $push :{ friends: docs} },
+                { $addToSet :{ friends: docs} },
                 {new: true},
                 (err,docs) => {
                     if (err) {
@@ -48,11 +47,7 @@ router.put('/:userName/:friend', (req, res) => {
                     res.send(docs)
                 })
         }
-
-
-
     })
-    
 })
 
 
