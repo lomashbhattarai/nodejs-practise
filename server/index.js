@@ -27,7 +27,7 @@ const email = require('./routes/api/emails/email');
 const login = require('./routes/api/login');
 app.use('/api/posts', posts);
 app.use('/api/books', middleware.checkToken, books);
-app.use('/api/users', middleware.checkToken, users);
+app.use('/api/users', users);
 app.use('/api/notes', notes);
 app.use('/api/email', email);
 app.use('/api/login', login);

@@ -32,6 +32,8 @@ router.put('/:username', (req,res) => {
             description: req.body.description,
             publish: req.body.publish
         }
+        console.log("user found",newNote)
+        console.log(docs)
         if( docs.notes) {
             docs.notes.push(newNote)
             docs.save((err) => {
@@ -40,7 +42,7 @@ router.put('/:username', (req,res) => {
             res.send(docs)
         } else {
             docs.notes = []
-            console.log("user found",newNote)
+            
             docs.notes.push(newNote)
             docs.save((err) => {
                 console.log(err)

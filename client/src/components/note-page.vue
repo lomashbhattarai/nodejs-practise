@@ -16,7 +16,7 @@
             
         </v-card>
         
-        <v-btn class="ma-2" outlined large fab color="indigo">
+        <v-btn class="ma-2" outlined large fab color="indigo" @click="addNewNote">
             <v-icon>edit</v-icon>
         </v-btn>    
     </div>
@@ -32,9 +32,17 @@ export default {
     },
     data(){
         return {
-            notes: this.$store.state.notes || []
+            notes: this.$store.state.notes || [],
+            userName: this.$store.state.userName
         }
+    },
+    methods:{
+        addNewNote(){
+        this.axios.put(`api/notes/darwin`,
+            { title: 'hey', description: 'test 1', publish: true })
     }
+    }
+    
 
 }
 </script>
