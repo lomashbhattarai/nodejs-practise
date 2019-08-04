@@ -16,15 +16,18 @@
             
         </v-card>
         
-        <v-btn class="ma-2" outlined large fab color="indigo" @click="addNewNote">
+        <v-btn class="ma-2" outlined large fab color="indigo" @click="addNote()">
             <v-icon>edit</v-icon>
         </v-btn>    
     </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
     created(){
+        console.log(this.tst)
+        console.log(this.$store.state.currentUser.notes)
         /* this.axios.get('api/notes').then( ({data}) => {
             console.log(data)
             this.notes = data
@@ -32,15 +35,28 @@ export default {
     },
     data(){
         return {
-            notes: this.$store.state.notes || [],
-            userName: this.$store.state.userName
+            tst: "gello",
+            
         }
     },
-    methods:{
-        addNewNote(){
-        this.axios.put(`api/notes/darwin`,
-            { title: 'hey', description: 'test 1', publish: true })
-    }
+    computed:{
+        ...mapState(['currentUser']),
+        userName(){
+            return this.currentUser.userName
+        },
+        notes(){
+            return this.currentUser.notes
+        }
+    },
+    methods: {
+        addNote(){
+            this.axios.put(`/api/notes/${this.userName}`, {
+                            "title":"hello there",
+                            "description": "ddd",
+                            "publish": true 
+                        }).then(data => console.log(data))
+        }
+
     }
     
 

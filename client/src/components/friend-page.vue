@@ -3,48 +3,46 @@
     <v-flex xs12 sm6 offset-sm3>
       <v-card>
         <v-list subheader>
-          <v-subheader>Recent</v-subheader>
+          <v-subheader>your Friends</v-subheader>
           <router-link :to="{ name: 'friendDetail' }">
+          <v-list-tile
+            v-for="friend in friends"
+            :key="friend.title"
+            avatar
+            @click=""
+          >
+            <v-list-tile-avatar>
+              <img src="https://cdn.vuetifyjs.com/images/lists/1.jpg">
+            </v-list-tile-avatar>
+
+            <v-list-tile-content>
+              <v-list-tile-title v-html="friend.userName"></v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+           </router-link>
+        </v-list>
+        <v-divider></v-divider>
+        <v-list subheader>
+          <v-subheader>All members</v-subheader>
+          
             <v-list-tile
-                v-for="friend in friends"
-                :key="friend._id"
+                v-for="user in users"
+                :key="user._id"
                 avatar
-            >
-                
+            >   
                 <v-list-tile-avatar>
                 <img src="https://cdn.vuetifyjs.com/images/lists/1.jpg">
                 </v-list-tile-avatar>
 
                 <v-list-tile-content>
-                <v-list-tile-title v-html="friend.userName"></v-list-tile-title>
+                <v-list-tile-title v-html="user.userName"></v-list-tile-title>
                 </v-list-tile-content>
             
                 <v-list-tile-action>
-                <v-icon :color="true ? 'teal' : 'grey'">chat_bubble</v-icon>
+                 <button type="button" class="btn btn-primary" @click="addFriend(user.userName)"> Add </button>
                 </v-list-tile-action>
             </v-list-tile>
-           </router-link>
-        </v-list>
-
-        <v-divider></v-divider>
-
-        <v-list subheader>
-          <v-subheader>Previous</v-subheader>
-
-          <v-list-tile
-            v-for="item in items2"
-            :key="item.title"
-            avatar
-            @click=""
-          >
-            <v-list-tile-avatar>
-              <img :src="item.avatar">
-            </v-list-tile-avatar>
-
-            <v-list-tile-content>
-              <v-list-tile-title v-html="item.title"></v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
+          
         </v-list>
       </v-card>
     </v-flex>
@@ -53,24 +51,32 @@
 
 
 <script>
+import { mapState } from 'vuex';
   export default {
     data () {
       return {
-        friends: [],
-        items2: [
-          { title: 'Travis Howard', avatar: 'https://cdn.vuetifyjs.com/images/lists/5.jpg' }
-        ]
+        users:[]
+      }
+    },
+    computed:{
+      ...mapState(['currentUser']),
+      friends(){
+        return this.currentUser.friends
       }
     },
     created(){
         this.axios.get('api/users').then(({data})=> {
-                this.friends = data
+                this.users = data
         });
+    },
+    methods:{
+      addFriend(friend){
+        this.axios.put(`api/users/${this.currentUser.userName}/${friend}`)
+      }
     }
   }
 </script>
-content_copy
-New Chat
+
 
 <style>
 

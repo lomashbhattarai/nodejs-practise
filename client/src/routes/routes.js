@@ -8,6 +8,7 @@ import noteDetail from '../components/note-detail.vue'
 import aboutPage from '../components/about-page.vue'
 import loginPage from '../components/login-page.vue'
 import signupPage from '../components/signup-page.vue'
+import chatPage from '../components/chat-page.vue'
 
 
 const routes = [
@@ -60,6 +61,11 @@ const routes = [
       path:'/signup',
       name: 'signupPage',
       component: signupPage
+    },
+    {
+      path:'/chat',
+      name: 'chatPage',
+      component: chatPage
     }
 
     

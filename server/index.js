@@ -3,14 +3,12 @@ const Joi = require('joi');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const session = require('express-session')
+
+const socket = require('./chat/chat');
 
 const app = express();
 
 const middleware = require('./middleware');
-
-
-
 
 //MiddleWare
 app.use(bodyParser.json());
@@ -43,10 +41,7 @@ if(process.env.NODE_ENV === 'production'){
 }
 const port = process.env.PORT || 3000;
 
-/* app.get('/', (req, res) => {
-  res.send('\n\nHello, yuuuu!\n\n');
-});
-
+/* 
 app.post('/api/courses',(req, res) => {
   const schema = {
     name : Joi.string().min(3).required()
@@ -71,9 +66,18 @@ db.on('error',console.error.bind(console, 'connection error:'));
 db.once('open', () => {
   console.log('Connected to MongoDB');
   console.log(port)
-  app.listen(port, () => {
+  let server = app.listen(port, () => {
     console.log(`listening on port ${ port }`);
   });
+  io = require('socket.io')(server);
+  io.on('connection', function(socket) {
+    socket.on('SEND', function(data) {
+      console.log("server ma msg")
+      io.emit("MESSAGE",data)
+    });
+  });
+
+
   
 });
 

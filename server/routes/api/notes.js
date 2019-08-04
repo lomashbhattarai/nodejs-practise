@@ -26,6 +26,7 @@ router.post('/', (req, res) => {
 })
 
 router.put('/:username', (req,res) => {
+<<<<<<< HEAD
     User.findOne( { userName : req.params.username}, (err, docs) => {
         let newNote = {
             title: req.body.title,
@@ -48,10 +49,20 @@ router.put('/:username', (req,res) => {
                 console.log(err)
             })
             res.send(docs)
+=======
+    let newNote = {
+        title: req.body.title,
+        description: req.body.description,
+        publish: req.body.publish
+    }
+    console.log(newNote)
+    User.findOneAndUpdate( { userName : req.params.username}, { $push: { notes: newNote} }, {new: true}, (err, docs) => {
+        if(err){
+            console.log("something is not right")
+>>>>>>> eca4cbb6b9945a2f7be7bacbd335ff62c106dbc8
         }
-
-
         
+        res.send(docs)
     }) 
 
 })
