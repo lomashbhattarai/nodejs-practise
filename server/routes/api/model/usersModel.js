@@ -37,8 +37,14 @@ const userSchema = new mongoose.Schema({
         }
         }],
     friends: [{
-        userName: { type: String },
-        friendID: { type: String }
+        userName: { 
+            type: String,
+            unique: true 
+        },
+        friendID: { 
+            type: String,
+            unique:true 
+        }
         }],
     notes:[{
         title: { type: String },

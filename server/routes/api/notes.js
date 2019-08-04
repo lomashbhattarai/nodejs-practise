@@ -2,8 +2,8 @@
 const express = require('express');
 const Notes = require('./notesModel');
 const router = express.Router();
-const User = require('./model/usersModel')
-
+const User = require('./model/usersModel');
+const mongoose = require('mongoose');
 router.get('/', (req, res) => {
     Notes.find()
         .exec()
@@ -26,45 +26,33 @@ router.post('/', (req, res) => {
 })
 
 router.put('/:username', (req,res) => {
-<<<<<<< HEAD
-    User.findOne( { userName : req.params.username}, (err, docs) => {
-        let newNote = {
-            title: req.body.title,
-            description: req.body.description,
-            publish: req.body.publish
-        }
-        console.log("user found",newNote)
-        console.log(docs)
-        if( docs.notes) {
-            docs.notes.push(newNote)
-            docs.save((err) => {
-                console.log(err)
-            })
-            res.send(docs)
-        } else {
-            docs.notes = []
-            
-            docs.notes.push(newNote)
-            docs.save((err) => {
-                console.log(err)
-            })
-            res.send(docs)
-=======
     let newNote = {
         title: req.body.title,
         description: req.body.description,
         publish: req.body.publish
     }
     console.log(newNote)
-    User.findOneAndUpdate( { userName : req.params.username}, { $push: { notes: newNote} }, {new: true}, (err, docs) => {
+    User.findOneAndUpdate( { userName : req.params.username}, 
+        { $push: { notes: newNote} }, {new: true}, (err, docs) => {
         if(err){
-            console.log("something is not right")
->>>>>>> eca4cbb6b9945a2f7be7bacbd335ff62c106dbc8
+            console.logbody("something is not right")
         }
         
         res.send(docs)
     }) 
 
+})
+
+router.put('/:userName/:noteId', (req, res) => {
+    User.findOneAndUpdate( { userName: req.params.userName }, 
+        {  $pull: { notes: { _id: mongoose.Types.ObjectId(req.params.noteId) }}},
+        {useFindAndModify: false},
+        (err, docs) => {
+        if(err) {
+            console.log(err)
+        }
+        res.sendStatus(204)
+    })
 })
 
 module.exports = router;

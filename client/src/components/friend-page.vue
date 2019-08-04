@@ -1,25 +1,30 @@
 <template>
   <v-layout row>
     <v-flex xs12 sm6 offset-sm3>
+      Escape the 1000+ friends on fb ..connect with just a few
       <v-card>
         <v-list subheader>
           <v-subheader>your Friends</v-subheader>
-          <router-link :to="{ name: 'friendDetail' }">
+          
           <v-list-tile
             v-for="friend in friends"
             :key="friend.title"
             avatar
             @click=""
           >
+          <router-link :to="{ name: 'friendDetail' }">
             <v-list-tile-avatar>
               <img src="https://cdn.vuetifyjs.com/images/lists/1.jpg">
             </v-list-tile-avatar>
-
+          </router-link>
             <v-list-tile-content>
               <v-list-tile-title v-html="friend.userName"></v-list-tile-title>
             </v-list-tile-content>
+            <v-btn color="primary" fab small dark @click="removeFriend(friend.userName)">
+                    <v-icon>delete</v-icon>
+            </v-btn>
           </v-list-tile>
-           </router-link>
+          
         </v-list>
         <v-divider></v-divider>
         <v-list subheader>
@@ -72,6 +77,9 @@ import { mapState } from 'vuex';
     methods:{
       addFriend(friend){
         this.axios.put(`api/users/${this.currentUser.userName}/${friend}`)
+      },
+      removeFriend(friend) {
+        this.axios.delete(`api/users/${this.currentUser.userName}/${friend}`)
       }
     }
   }

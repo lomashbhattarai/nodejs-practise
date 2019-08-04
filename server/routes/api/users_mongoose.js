@@ -1,6 +1,7 @@
 const express = require('express');
 const Users = require('./model/usersModel');
 const router = express.Router();
+const mongoose = require('mongoose');
 
 router.get('/', (req, res) => {
     Users.find()
@@ -34,20 +35,34 @@ router.post('/', (req, res) => {
 router.put('/:userName/:friend', (req, res) => {
     Users.findOne({ userName: req.params.friend}, (err, docs) => {
         if(err){
-            console.log("somethign is wrong")
+            console.log("something is wrong")
         } else {
-            console.log(docs)
             Users.findOneAndUpdate({ userName: req.params.userName },
                 { $addToSet :{ friends: docs} },
                 {new: true},
                 (err,docs) => {
                     if (err) {
                         console.log("somthing is not right")
+                        res.sendStatus(400)
                     }
                     res.send(docs)
                 })
         }
     })
+})
+
+router.delete('/:userName/:friend', (req, res) => {
+    Users.findOneAndUpdate({ userName: req.params.userName},
+        {$pull : { friends: { userName: req.params.friend}}},
+        {useFindAndModify: false},
+        (err, docs) => {
+            if(err) {
+                console.log(err)
+                res.sendStatus(400)
+            }
+            res.send(docs)
+        }
+    )
 })
 
 

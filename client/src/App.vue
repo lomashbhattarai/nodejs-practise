@@ -3,7 +3,7 @@
       <v-toolbar color="white" app absolute clipped-left>
         <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
         <router-link :to="{name: 'mainPage'}">
-<!--           <span class="title ml-3 mr-5">Self&nbsp;<span class="font-weight-light">authoring Program</span></span> -->
+          <span class="title ml-3 mr-5">Self&nbsp;<span class="font-weight-light">authoring Program</span></span>
         </router-link>
         <!-- <v-text-field
           solo-inverted
