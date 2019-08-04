@@ -30,7 +30,7 @@ export default {
     data(){
         return {
             port: process.env.PORT || 5150,
-            socket: io(`localhost:5150`),
+            socket: process.env.NODE_ENV == "production" ? io(`self-authoring-demo.herokuapp.com`) : io(`localhost:5150`) ,
             message: '',
             messages: [],
             show: true    
