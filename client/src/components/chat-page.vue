@@ -23,8 +23,10 @@ import { mapState } from 'vuex';
 export default {
     created(){
         this.socket.on('MESSAGE', (data) => {
-            console.log("message")
             this.messages.push(data)
+        });
+        this.axios.get('/api/chat').then( ( {data} ) => {
+            this.messages = data
         })    
     },
     data(){

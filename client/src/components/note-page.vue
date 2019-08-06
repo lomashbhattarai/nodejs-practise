@@ -18,7 +18,11 @@
         
         <v-btn class="ma-2" outlined large fab color="indigo" @click="addNote()">
             <v-icon>edit</v-icon>
-        </v-btn>    
+        </v-btn> 
+        <div>
+            <input>
+            <textarea></textarea>
+        </div>   
     </div>
 </template>
 

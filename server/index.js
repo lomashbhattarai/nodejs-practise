@@ -4,8 +4,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const socket = require('./chat/chat');
-
 const app = express();
 
 const middleware = require('./middleware');
@@ -23,12 +21,15 @@ const users = require('./routes/api/users_mongoose');
 const notes = require('./routes/api/notes');
 const email = require('./routes/api/emails/email');
 const login = require('./routes/api/login');
+const chatApi = require('./routes/api/chat');
+
 app.use('/api/posts', posts);
 app.use('/api/books', middleware.checkToken, books);
 app.use('/api/users', users);
 app.use('/api/notes', notes);
 app.use('/api/email', email);
 app.use('/api/login', login);
+app.use('/api/chat',chatApi);
 
 //handle production
 if(process.env.NODE_ENV === 'production'){
@@ -63,6 +64,9 @@ mongoose.connect('mongodb+srv://lomash:Godfather@hiup-hgarc.mongodb.net/test?ret
 db= mongoose.connection
 db.on('error',console.error.bind(console, 'connection error:'));
 
+const Chats = require('./routes/api/model/chatModel');
+
+
 db.once('open', () => {
   console.log('Connected to MongoDB');
   console.log(port)
@@ -71,8 +75,16 @@ db.once('open', () => {
   });
   io = require('socket.io')(server);
   io.on('connection', function(socket) {
+    
     socket.on('SEND', function(data) {
-      console.log("server ma msg")
+      console.log("data")
+      console.log(data);
+      let chat = new Chats(data); 
+      chat.save((err, chat) => {
+        if(err){
+          console.log(err);
+        }
+      });
       io.emit("MESSAGE",data)
     });
   });
