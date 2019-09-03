@@ -3,6 +3,8 @@ const Joi = require('joi');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const morgan = require('morgan');
+
 
 const app = express();
 
@@ -11,6 +13,7 @@ const middleware = require('./middleware');
 //MiddleWare
 app.use(bodyParser.json());
 app.use(cors());
+app.use(morgan('dev'));
 //app.use(express.json());
 
 
@@ -75,10 +78,7 @@ db.once('open', () => {
   });
   io = require('socket.io')(server);
   io.on('connection', function(socket) {
-    
     socket.on('SEND', function(data) {
-      console.log("data")
-      console.log(data);
       let chat = new Chats(data); 
       chat.save((err, chat) => {
         if(err){

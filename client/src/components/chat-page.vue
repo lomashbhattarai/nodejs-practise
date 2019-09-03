@@ -14,7 +14,6 @@
         <textarea v-model="message"></textarea>
         <button type="button" class="btn btn-primary" @click="sendMessage"> SEND</button>
     </div>
-    
 </template>
 
 <script>

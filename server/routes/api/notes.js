@@ -1,6 +1,6 @@
 
 const express = require('express');
-const Notes = require('./notesModel');
+const Notes = require('./model/notesModel');
 const router = express.Router();
 const User = require('./model/usersModel');
 const mongoose = require('mongoose');
@@ -31,13 +31,26 @@ router.put('/:username', (req,res) => {
         description: req.body.description,
         publish: req.body.publish
     }
-    console.log(newNote)
-    User.findOneAndUpdate( { userName : req.params.username}, 
-        { $push: { notes: newNote} }, {new: true}, (err, docs) => {
+    let feedPost = {
+        title: req.body.title,
+        description: req.body.description,
+        postedBy: req.params.username
+    }
+
+    User.findOneAndUpdate( { userName : req.params.username}, { $push: { notes: newNote, feed: feedPost} }, {new: true}, (err, docs) => {
         if(err){
-            console.logbody("something is not right")
-        }
-        
+            return res.status(400).json({error: err})
+        } 
+        docs.friends.map( (friend) => {
+            User.findOneAndUpdate( { userName: friend.userName}, { $push: {feed: feedPost}},{new: true}, (err, docs) => {
+                if(err){
+                    return res.status(400).json({error: err})
+                }
+                console.log("feed");
+                console.log(docs);
+
+            })
+        })       
         res.send(docs)
     }) 
 
