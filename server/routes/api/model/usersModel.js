@@ -44,6 +44,11 @@ const userSchema = new mongoose.Schema({
         title: { type: String },
         description: { type: String },
         publish: { type: Boolean }
+    }],
+    feed: [{
+        title: { type: String },
+        description: { type: String },
+        user: { type: String }
     }]
 })
 
