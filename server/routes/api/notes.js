@@ -34,7 +34,7 @@ router.put('/:username', (req,res) => {
     let feedPost = {
         title: req.body.title,
         description: req.body.description,
-        postedBy: req.params.username
+        user: req.params.username
     }
 
     User.findOneAndUpdate( { userName : req.params.username}, { $push: { notes: newNote, feed: feedPost} }, {new: true}, (err, docs) => {
